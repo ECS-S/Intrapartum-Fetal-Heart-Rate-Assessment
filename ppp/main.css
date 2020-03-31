@@ -10,8 +10,8 @@ body {
   padding: 20px;
 }
 .image_preview{
-  width: 1140px;
-  min-height: 400px;
+  width: 100%;
+  min-height: 50%;
   border: 6px dashed gray;
   margin-top:15px;
 
