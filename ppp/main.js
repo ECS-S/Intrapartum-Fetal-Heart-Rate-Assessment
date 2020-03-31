@@ -1,36 +1,31 @@
-function readURL(input) {
-  var a = document.getElementById("week");
+const input_file = document.getElementById("input_file");
+const previewContainer = document.getElementById("image_preview");
+const previewImage = previewContainer.querySelector(".image_preview_image");
+const previewDefaultText = previewContainer.querySelector(".image_preview_text");
+
+input_file.addEventListener("change",function(){
+  var a= document.getElementById("week");
   var week = a.options[a.selectedIndex].value;
   console.log(week)
-  if (input.files && input.files[0]) {
+  const imagefile = this.files[0];
 
-    var reader = new FileReader();
+  if(imagefile){
+    const reader = new FileReader();
 
-    reader.onload = function(e) {
-      $('.image-upload-wrap').hide();
+    previewDefaultText.style.display = "none";
+    previewImage.style.display="block";
 
-      $('.file-upload-image').attr('src', e.target.result);
-      $('.file-upload-content').show();
-
-      $('.image-title').html(input.files[0].name);
-
-    };
-
-    reader.readAsDataURL(input.files[0]);
-
-  } else {
-    removeUpload();
-  }
-}
-
-function removeUpload() {
-  $('.file-upload-input').replaceWith($('.file-upload-input').clone());
-  $('.file-upload-content').hide();
-  $('.image-upload-wrap').show();
-}
-$('.image-upload-wrap').bind('dragover', function () {
-        $('.image-upload-wrap').addClass('image-dropping');
+    reader.addEventListener("load", function(){
+    previewImage.setAttribute("src", this.result)
     });
-    $('.image-upload-wrap').bind('dragleave', function () {
-        $('.image-upload-wrap').removeClass('image-dropping');
+    reader.readAsDataURL(imagefile);
+  }else {
+    previewDefaultText.style.display = null;
+    previewImage.style.display = null;
+    previewImage.setAttribute("src"," ")
+  }
 });
+function onOpenCvReady() {
+   console.log("opencv ready")
+   
+}
