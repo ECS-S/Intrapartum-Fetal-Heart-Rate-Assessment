@@ -21,8 +21,9 @@
                             <div class="pull-right">
                                 <div class="btn-group">
                                   <form>
+                                    week
                                     <select id="week" >
-                                      <option value="12" selected >幾週</option>
+                                      <option value="8" selected >8</option>
                                     　<option value="12">12</option>
                                     　<option value="18">18</option>
                                     　<option value="24">24</option>
@@ -45,6 +46,7 @@
                                 <img src= " " alt="Image Preview" class="image_preview_image">
                                  <span class="image_preview_text">Image preview</span>
                               </div>
+                              <canvas id="canvasOutput" ></canvas>
                             </div>
                        </div>
                   </div>
@@ -56,6 +58,7 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="./vendor/bootstrap/js/bootstrap.min.js"></script>
     <script async src="./opencv.js" onload="onOpenCvReady();" type="text/javascript"></script>
+    <script src="process.js" type="text/javascript"></script>
     <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <script src="main.js"></script>
     <!-- Custom Theme JavaScript -->
