@@ -86,7 +86,7 @@ function startProcess(imgElement, weekIndex, options) {
     // cv.drawContours(resized, contours, maxCntIndex, new cv.Scalar(0, 255, 0, 255), 3);
   } else {
     console.log('no belly contours found.');
-    return;
+    return new Error('No belly found.');
   }
   // polygon approximation
   let epsilon = 0.01*cv.arcLength(contours.get(maxCntIndex), true);
@@ -104,7 +104,7 @@ function startProcess(imgElement, weekIndex, options) {
   let bellyPercentage = maxCntArea / (resized.rows*resized.cols);
   if (bellyPercentage < 0.4) {
     console.log('fail to meet minimum belly area.');
-    return;
+    return new Error('Fail to meet minimum belly area.');
   }
   // cleaning
   contours.delete(); poly.delete(); tmp.delete();
@@ -158,7 +158,7 @@ function startProcess(imgElement, weekIndex, options) {
       , 10, new cv.Scalar(255,0,0,255), -1);
   } else {
     console.log('no belly button found');
-    return;
+    return new Error('No belly button found.');
   }
   // cleaning
   hull.delete(); roi.delete(); blurRoi.delete();
