@@ -24,7 +24,6 @@ input_file.addEventListener("change",function(){
     // run script when file is loaded
     reader.onload = function() {
       let imgElement = document.querySelector('.image_preview_image');
-      console.log(imgElement);
       startProcess(imgElement, week, { DEBUG: false });
     }
 

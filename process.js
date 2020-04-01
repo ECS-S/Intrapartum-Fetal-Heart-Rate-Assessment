@@ -54,6 +54,8 @@ function startProcess(imgElement, weekIndex, options) {
   cv.dilate(threshed, threshed, kernelthreshed, new cv.Point(-1, -1), 5);
   let blurthreshed = new cv.Mat();
   cv.GaussianBlur(threshed, blurthreshed, new cv.Size(3, 3), 0);
+  // cleaning
+  grey.delete(); threshed.delete(); kernelthreshed.delete(); skin.delete();
 
   /*contours belly*/
   let contoured = new cv.Mat();
@@ -61,6 +63,8 @@ function startProcess(imgElement, weekIndex, options) {
   let hierarchy = new cv.Mat();
   cv.findContours(blurthreshed, contours, hierarchy, cv.RETR_CCOMP, cv.CHAIN_APPROX_NONE);
   // cv.drawContours(resized, contours, -1, new cv.Scalar(0, 255, 0, 255), 3);
+  // cleaning
+  blurthreshed.delete(); hierarchy.delete();
 
   /*
   belly detection
@@ -102,6 +106,8 @@ function startProcess(imgElement, weekIndex, options) {
     console.log('fail to meet minimum belly area.');
     return;
   }
+  // cleaning
+  contours.delete(); poly.delete(); tmp.delete();
 
   /*body parts labeling*/
   // find region of interest: bound min rect => bound max circle
@@ -154,6 +160,9 @@ function startProcess(imgElement, weekIndex, options) {
     console.log('no belly button found');
     return;
   }
+  // cleaning
+  hull.delete(); roi.delete(); blurRoi.delete();
+  sharpRoi.delete(); edgeRoi.delete(); contoursRoi.delete(); hierarchyRoi.delete();
 
   /*heartbeat tracking*/
   // alignment
@@ -182,4 +191,6 @@ function startProcess(imgElement, weekIndex, options) {
 
   /*show the output*/
   cv.imshow('canvasOutput', resized);
+  // cleaning
+  resized.delete();
 }
