@@ -1,3 +1,5 @@
+var result;
+
 function startProcess(imgElement, weekIndex, imgSize, options) {
   /*settings*/
   if (options) {
@@ -8,7 +10,7 @@ function startProcess(imgElement, weekIndex, imgSize, options) {
   let img = cv.imread(imgElement);
 
   /*resize*/
-  let resized = new cv.Mat();
+  var resized = new cv.Mat();
   cv.resize(img, resized, new cv.Size(imgSize[1], imgSize[0]));
   img.delete();
 
@@ -197,6 +199,12 @@ function startProcess(imgElement, weekIndex, imgSize, options) {
 
   /*show the output*/
   cv.imshow('canvasOutput', resized);
-  // cleaning
-  resized.delete();
+  result = resized;
+}
+
+function resizeOutput(h, w) {
+  let changed = new cv.Mat();
+  cv.resize(result, changed, new cv.Size(w, h));
+  cv.imshow('canvasOutput', changed);
+  changed.delete();
 }

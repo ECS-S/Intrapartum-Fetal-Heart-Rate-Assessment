@@ -44,22 +44,39 @@ input_file.addEventListener("change",function(){
   }else {
     resetImage();
     isProcessed = false;
-    }
+  }
 });
+
+window.addEventListener("resize", function(){
+  resizeImage();
+});
+
+function resetFile() {
+  input_file.value = '';
+}
 
 function resetImage() {
   // default images
   previewImage.setAttribute("src","./sample/sample_before.jpg");
-  let defImg = new Image;
+  let defImg = new Image();
   defImg.onload = function() {
-    canvas.height = defImg.height;
-    canvas.width = defImg.width;
-    canvas.getContext('2d').drawImage(defImg, 0, 0);
+    canvas.height = previewImage.height;
+    canvas.width = previewImage.width;
+    canvas.getContext('2d').drawImage(defImg, 0, 0, previewImage.width, previewImage.height);
   }
   defImg.src = './sample/sample_after.jpg'
+
   // default label
   label1.innerHTML = '原圖(範例)';
   label2.innerHTML = '預估(範例)';
+}
+
+function resizeImage() {
+  if (isProcessed) {
+    resizeOutput(previewImage.height, previewImage.width);
+  } else {
+    resetImage();
+  }
 }
 
 function estimate() {
