@@ -111,12 +111,7 @@ function optionChanged() {
   current_week = week;
   if (isProcessed) {
     estimate();
-  }
-  Swal.fire(
-    '注意!',
-    'week_options.selectedIndex',
-    'error'
-  )
+}
 }
 
 function onOpenCvReady() {
