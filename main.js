@@ -94,11 +94,7 @@ function estimate() {
     label2.innerHTML = '預估';
   } catch (e) {
     if (e.name === 'Bad Image Error') {
-      Swal.fire(
-        '注意!',
-        e.massage ,
-        'error'
-      )
+      alert(e.message);
     } else {
       Swal.fire(
         '注意!',
