@@ -1,66 +1,97 @@
 <html>
-      <head>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta charset="UTF-8">
-        <link rel="stylesheet" type="text/css" href="main.css">
-      </head>
-      <body>
-         <div class="file-upload">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">尋找胎心音</h1>
-                </div>
-                <!-- /.col-lg-12 -->
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="main.css">
+  </head>
+  <body>
+    <div class="file-upload">
+
+      <!-- Title bar -->
+      <div class="row">
+        <div class="col-lg-12">
+          <h1 class="page-header">尋找胎心音</h1>
+          <div class="indent">
+            <b>使用說明</b>
+            <ol>
+              <li>選擇懷孕週數</li>
+              <li>上傳一張孕肚的正面照</li>
+              <li>送出照片等待結果</li>
+              <li>數秒後，我們將會提供您胎心的預測位置</li>
+            </ol>
+            <b>提示</b>
+            <ol>
+              <li>照片請將孕肚靠近並至中</li>
+              <li>拍照請在燈光充足處</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <!-- Upload Area -->
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="panel panel-default">
+
+            <!-- grey bar -->
+            <div class="panel-heading">
+              <b>估算胎心位置</b>
             </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <i class="fa fa-bar-chart-o fa-fw"></i> Result
-                            <div class="pull-right">
-                                <div class="btn-group">
-                                  <form>
-                                    week
-                                    <select id="week" >
-                                      <option value="8" selected >8</option>
-                                    　<option value="12">12</option>
-                                    　<option value="18">18</option>
-                                    　<option value="24">24</option>
-                                    　<option value="30">30</option>
-                                      <option value="35">35</option>
-                                      <option value="36">36</option>
-                                    </select>
-                                    </form>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /.panel-heading -->
-                            <div class="panel-body">
-                                <label for="input_file" class="btn btn-primary btn-lg btn-block">
-                                    <i class="fa fa-cloud-upload"></i> Custom Upload
-                                </label>
-                                <input type='file' name="input_file" id="input_file">
-                              <div class="image_preview" id="image_preview">
-                                <img src= " " alt="Image Preview" class="image_preview_image">
-                                 <span class="image_preview_text">Image preview</span>
-                              </div>
-                              <canvas id="canvasOutput" ></canvas>
-                            </div>
-                       </div>
-                  </div>
+
+            <!-- upload chunk -->
+            <div class="panel-body">
+
+              <!-- Enter week -->
+              <form>
+                懷孕週數
+                <select id="week" onchange="optionChanged()">
+                  <option value=""selected></option>
+                  <option value="8">8</option>
+                　<option value="12">12</option>
+                　<option value="18">18</option>
+                　<option value="24">24</option>
+                　<option value="30">30</option>
+                  <option value="35">35</option>
+                  <option value="36">36</option>
+                </select>
+              </form>
+
+              <!-- submit btn -->
+              <label for="input_file" class="btn btn-primary">
+                上傳照片
+                <input type='file' name="input_file" id="input_file">
+              </label>
+
+              <!-- image views -->
+              <div class="center">
+                <!-- preview chunk -->
+                <i id="label-before" class="img-label">原圖(範例)</i>
+                <div class="image_preview" id="image_preview">
+                  <img src= "" class="image_preview_image">
+                </div>
+
+                <!-- output result -->
+                  <i id="label-after" class="img-label">估算結果(範例)</i>
+                <canvas id="canvasOutput"></canvas>
+
               </div>
-         </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
     </div>
-       <!-- jQuery -->
+    <!-- jQuery -->
     <script src="./vendor/jquery/jquery.min.js"></script>
     <!-- Bootstrap Core JavaScript -->
     <script src="./vendor/bootstrap/js/bootstrap.min.js"></script>
     <script async src="./opencv.js" onload="onOpenCvReady();" type="text/javascript"></script>
     <script src="process.js" type="text/javascript"></script>
     <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <!-- Own -->
     <script src="main.js"></script>
-    <!-- Custom Theme JavaScript -->
-    </body>
+  </body>
 </html>

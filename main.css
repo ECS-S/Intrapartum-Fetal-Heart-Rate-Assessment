@@ -5,28 +5,27 @@ body {
 
 .file-upload {
   background-color: #ffffff;
-  width: 80%;
+  width: 50%;
   margin: 30 auto;
   padding: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-.image_preview{
-  width: 100%;
-  min-height: 50%;
-  border: 6px dashed gray;
-  margin-top:15px;
-
-  /*Display Text*/
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  color: gray;
+.indent {
+  margin-left: 20px;
 }
 
 .image_preview_image{
-  display: none;
-  width: 100%;
-
+  max-width: 400px;
+  max-height: 600px;
+}
+.center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+.img-label{
+  margin-top: 15px;
 }
 input[type="file"] {
   display: none;

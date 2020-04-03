@@ -1,4 +1,4 @@
-function startProcess(imgElement, weekIndex, options) {
+function startProcess(imgElement, weekIndex, imgSize, options) {
   /*settings*/
   if (options) {
     var isDEBUG = options['DEBUG'];
@@ -9,7 +9,7 @@ function startProcess(imgElement, weekIndex, options) {
 
   /*resize*/
   let resized = new cv.Mat();
-  cv.resize(img, resized, new cv.Size(400, 300));
+  cv.resize(img, resized, new cv.Size(imgSize[1], imgSize[0]));
   img.delete();
 
   /*convert to hsv*/
@@ -71,7 +71,7 @@ function startProcess(imgElement, weekIndex, options) {
   to proceed, the area of the belly must exceesd 40% of the image
   */
   // find largest contour
-  if (contours) {
+  if (contours.size() > 0) {
     var maxCntIndex = 0;
     let maxCnt = contours.get(maxCntIndex);
     var maxCntArea = cv.contourArea(maxCnt, false);
@@ -86,7 +86,9 @@ function startProcess(imgElement, weekIndex, options) {
     // cv.drawContours(resized, contours, maxCntIndex, new cv.Scalar(0, 255, 0, 255), 3);
   } else {
     console.log('no belly contours found.');
-    return new Error('No belly found.');
+    let e = new Error('無法辨識肚子，請靠近一點');
+    e.name = 'Bad Image Error';
+    throw e;
   }
   // polygon approximation
   let epsilon = 0.01*cv.arcLength(contours.get(maxCntIndex), true);
@@ -104,7 +106,9 @@ function startProcess(imgElement, weekIndex, options) {
   let bellyPercentage = maxCntArea / (resized.rows*resized.cols);
   if (bellyPercentage < 0.4) {
     console.log('fail to meet minimum belly area.');
-    return new Error('Fail to meet minimum belly area.');
+    let e = new Error('請靠近一點');
+    e.name = 'Bad Image Error';
+    throw e;
   }
   // cleaning
   contours.delete(); poly.delete(); tmp.delete();
@@ -139,7 +143,7 @@ function startProcess(imgElement, weekIndex, options) {
   let contoursRoi = new cv.MatVector();
   let hierarchyRoi = new cv.Mat();
   cv.findContours(edgeRoi, contoursRoi, hierarchyRoi, cv.RETR_CCOMP, cv.CHAIN_APPROX_NONE);
-  if (contoursRoi) {
+  if (contoursRoi.size() > 0) {
     var maxRoiCntIndex = 0;
     let maxRoiCnt = contoursRoi.get(maxRoiCntIndex);
     var maxRoiCntArea = cv.contourArea(maxRoiCnt, false);
@@ -158,7 +162,9 @@ function startProcess(imgElement, weekIndex, options) {
       , 10, new cv.Scalar(255,0,0,255), -1);
   } else {
     console.log('no belly button found');
-    return new Error('No belly button found.');
+    let e = new Error('無法辨識肚臍');
+    e.name = 'Bad Image Error';
+    throw e;
   }
   // cleaning
   hull.delete(); roi.delete(); blurRoi.delete();
