@@ -114,7 +114,7 @@ function optionChanged() {
   }
   Swal.fire(
     '注意!',
-    week_options.selectedIndex ,
+    'week_options.selectedIndex',
     'error'
   )
 }
