@@ -14,11 +14,11 @@ input_file.addEventListener("change",function(){
   // check week
   if (current_week == 0) {
     console.log('Week not selected.');
-    Swal.fire(
-      '注意!',
-      '請先選擇懷孕週期!',
-      'error'
-    )
+    Swal.fire({
+      title:  '注意!',
+      text: '請先選擇懷孕週期!',
+      icon: 'error'
+    });
     return;
   }
 
@@ -26,11 +26,11 @@ input_file.addEventListener("change",function(){
   const imagefile = this.files[0];
   if (fileTypes.indexOf(imagefile.name.split('.').pop().toLowerCase()) === -1) {
     console.log('unsupported format');
-    Swal.fire(
-      '注意!',
-      '檔案格式錯誤!',
-      'error'
-    )
+    Swal.fire({
+      title:  '注意!',
+      text: '檔案格式錯誤!',
+      icon: 'error'
+    });
     return;
   }
 
@@ -94,13 +94,17 @@ function estimate() {
     label2.innerHTML = '預估';
   } catch (e) {
     if (e.name === 'Bad Image Error') {
-      alert(e.message);
+      Swal.fire({
+        title: '注意!',
+        text: e.message,
+        icon: 'error'
+      });
     } else {
-      Swal.fire(
-        '注意!',
-        '無法辨識!',
-        'error'
-      )
+      Swal.fire({
+        title:  '注意!',
+        text: '無法辨識!',
+        icon: 'error'
+      })
     }
   }
 }
