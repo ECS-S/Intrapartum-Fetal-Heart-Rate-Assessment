@@ -7,7 +7,8 @@ function startProcess(imgElement, weekIndex, imgSize, options) {
   }
 
   /*input*/
-  let img = cv.imread(imgElement);
+  // let img = cv.imread(imgElement);
+  let img = imgElement;
 
   /*resize*/
   var resized = new cv.Mat();
@@ -90,11 +91,9 @@ function startProcess(imgElement, weekIndex, imgSize, options) {
     console.log('no belly contours found.');
     let e = new Error('無法辨識肚子，請靠近一點');
     e.name = 'Bad Image Error';
-    throw  Swal.fire(
-      '注意!',
-      e ,
-      'error'
-    );
+    // cleaning
+    contours.delete();
+    throw e;
   }
   // polygon approximation
   let epsilon = 0.01*cv.arcLength(contours.get(maxCntIndex), true);
@@ -107,13 +106,15 @@ function startProcess(imgElement, weekIndex, imgSize, options) {
   // hull approximation
   cv.convexHull(contours.get(maxCntIndex), tmp, false, true);
   hull.push_back(tmp);
-  // cv.drawContours(resized, hull, -1, new cv.Scalar(0, 255, 0, 255), 3);
+  // cv.drawContours(resized, hull, -1, new cv.Scalar(0, 255, 0, 255), 3); // TODO
   // check if minimum belly area is met
   let bellyPercentage = maxCntArea / (resized.rows*resized.cols);
-  if (bellyPercentage < 0.4) {
-    console.log('fail to meet minimum belly area.');
+  if (bellyPercentage < 0.1) {
+    console.log('fail to meet minimum belly area. Found: ' + bellyPercentage);
     let e = new Error('請靠近一點');
     e.name = 'Bad Image Error';
+    // cleaning
+    contours.delete(); poly.delete(); tmp.delete();
     throw e;
   }
   // cleaning
@@ -170,6 +171,9 @@ function startProcess(imgElement, weekIndex, imgSize, options) {
     console.log('no belly button found');
     let e = new Error('無法辨識肚臍');
     e.name = 'Bad Image Error';
+    // cleaning
+    hull.delete(); roi.delete(); blurRoi.delete();
+    sharpRoi.delete(); edgeRoi.delete(); contoursRoi.delete(); hierarchyRoi.delete();
     throw e;
   }
   // cleaning

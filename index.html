@@ -60,8 +60,10 @@
               <!-- submit btn -->
               <label for="input_file" class="btn btn-primary">
                 上傳照片
-                <input type='file' name="input_file" id="input_file" onclick="resetFile()">
+                <input type='file' name="input_file" id="input_file" onclick="resetFile();">
               </label>
+              <!-- video btn -->
+              <button type="button" class="btn btn-primary" onclick="captureVideo();">Video</button>
 
               <!-- image views -->
               <div class="center">
@@ -74,6 +76,10 @@
                 <!-- output result -->
                   <i id="label-after" class="img-label">估算結果(範例)</i>
                 <canvas id="canvasOutput"></canvas>
+
+                <!-- video capture -->
+                <h3 class="status">狀態</h3>
+                <video id="videoInput" width="480" height="360" class="videoCapture"></video>
 
               </div>
 

@@ -43,3 +43,6 @@ input[type="file"] {
 .swal-wide{
   width:850px !important;
 }
+.videoCapture {
+  display: none;
+}
