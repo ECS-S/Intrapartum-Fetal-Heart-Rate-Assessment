@@ -58,28 +58,13 @@
               </form>
 
               <!-- submit btn -->
-              <label for="input_file" class="btn btn-primary">
-                上傳照片
-                <input type='file' name="input_file" id="input_file" onclick="resetFile();">
-              </label>
               <!-- video btn -->
-              <button type="button" class="btn btn-primary " onclick="location.href='video.html';" >線上辯識</button>
-
-              <!-- image views -->
-              <div class="center">
-                <!-- preview chunk -->
-                <i id="label-before" class="img-label">原圖(範例)</i>
-                <div class="image_preview" id="image_preview">
-                  <img src= "" class="image_preview_image">
-                </div>
-
-                <!-- output result -->
-                  <i id="label-after" class="img-label">估算結果(範例)</i>
-                <canvas id="canvasOutput"></canvas>
-
+              <button type="button" class="btn btn-primary" onclick="captureVideo();">線上辯識</button>
+             
                 <!-- video capture -->
                 <h3 class="status">狀態</h3>
                 <video id="videoInput" width="480" height="360" class="videoCapture"></video>
+                <canvas id="canvasOutput"></canvas>
 
               </div>
 
@@ -91,12 +76,11 @@
 
     </div>
     <!-- Bootstrap Core JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="./vendor/bootstrap/js/bootstrap.min.js"></script>
     <script async src="./opencv.js" onload="onOpenCvReady();" type="text/javascript"></script>
     <script src="process.js" type="text/javascript"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <!-- Own -->
-    <script src="main.js"></script>
+    <script src="video.js"></script>
   </body>
 </html>
