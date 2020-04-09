@@ -91,9 +91,13 @@ function startProcess(imgElement, weekIndex, imgSize, options) {
     console.log('no belly contours found.');
     let e = new Error('無法辨識肚子，請靠近一點');
     e.name = 'Bad Image Error';
+<<<<<<< HEAD
     // cleaning
     contours.delete();
     throw e;
+=======
+    throw  e;
+>>>>>>> 14a3259b48c268ca242f81fa977dbac327718fd0
   }
   // polygon approximation
   let epsilon = 0.01*cv.arcLength(contours.get(maxCntIndex), true);
