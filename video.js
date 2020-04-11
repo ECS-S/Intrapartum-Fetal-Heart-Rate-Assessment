@@ -7,7 +7,7 @@ const label1 = document.getElementById('label-before');
 const label2 = document.getElementById('label-after');
 var isProcessed = false;
 
-
+document.getElementById("canvasOutput").style.display = "none";
 function estimate(src, ignoreAlert) {
     // check week
   if (current_week == 0) {
