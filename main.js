@@ -8,7 +8,13 @@ const label1 = document.getElementById('label-before');
 const label2 = document.getElementById('label-after');
 var isProcessed = false;
 const fileTypes = ['jpg', 'jpeg', 'png'];
+var slider = document.getElementById("myRange");
+var output = document.getElementById("demo");
+output.innerHTML = slider.value;
 
+slider.oninput = function() {
+  output.innerHTML = this.value;
+}
 
 input_file.addEventListener("change",function(){
   // check week
