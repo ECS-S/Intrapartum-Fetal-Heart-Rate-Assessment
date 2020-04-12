@@ -1,6 +1,5 @@
 const input_file = document.getElementById("input_file");
-const week_options = document.getElementById("week");
-var current_week = 0;
+var current_week = 1;
 const previewContainer = document.getElementById("image_preview");
 const previewImage = previewContainer.querySelector(".image_preview_image");
 const canvas = document.getElementById('canvasOutput');
@@ -8,13 +7,7 @@ const label1 = document.getElementById('label-before');
 const label2 = document.getElementById('label-after');
 var isProcessed = false;
 const fileTypes = ['jpg', 'jpeg', 'png'];
-var slider = document.getElementById("myRange");
-var output = document.getElementById("demo");
-output.innerHTML = slider.value;
 
-slider.oninput = function() {
-  output.innerHTML = this.value;
-}
 
 input_file.addEventListener("change",function(){
   // check week
@@ -133,7 +126,7 @@ function estimate(src, ignoreAlert) {
 
 function optionChanged() {
   // read week
-  var week = week_options.selectedIndex;
+  let week = $(".slider").slider('values', 0) + 1;
   current_week = week;
   if (isProcessed) {
     let img = cv.imread(previewImage);

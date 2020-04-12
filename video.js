@@ -1,6 +1,6 @@
 const input_file = document.getElementById("input_file");
 const week_options = document.getElementById("week");
-var current_week = 0;
+var current_week = 1;
 const previewContainer = document.getElementById("image_preview");
 const canvas = document.getElementById('canvasOutput');
 const label1 = document.getElementById('label-before');
@@ -9,16 +9,6 @@ var isProcessed = false;
 
 document.getElementById("canvasOutput").style.display = "none";
 function estimate(src, ignoreAlert) {
-    // check week
-  if (current_week == 0) {
-    console.log('Week not selected.');
-    Swal.fire({
-      title:  '注意!',
-      text: '請先選擇懷孕週期!',
-      icon: 'error'
-    });
-    return;
-  }
   try {
     startProcess(src, current_week - 1, [360, 480], { DEBUG: true });
     label1.innerHTML = '原圖';
@@ -58,7 +48,7 @@ function estimate(src, ignoreAlert) {
 
 function optionChanged() {
   // read week
-  var week = week_options.selectedIndex;
+  let week = $(".slider").slider('values', 0) + 1;
   current_week = week;
 }
 
@@ -67,6 +57,17 @@ function onOpenCvReady() {
 }
 
 function captureVideo() {
+  // check week
+  if (current_week == 0) {
+    console.log('Week not selected.');
+    Swal.fire({
+      title:  '注意!',
+      text: '請先選擇懷孕週期!',
+      icon: 'error'
+    });
+    streaming = false;
+    return;
+  }
   streaming = true;
   // video tag
   let video = document.getElementById("videoInput"); // video is the id of video tag
