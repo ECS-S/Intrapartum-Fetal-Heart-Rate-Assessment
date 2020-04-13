@@ -218,3 +218,11 @@ function resizeOutput(h, w) {
   cv.imshow('canvasOutput', changed);
   changed.delete();
 }
+
+function resizeInput(src, h, w) {
+  let changed = new cv.Mat();
+  cv.resize(src, changed, new cv.Size(w, h));
+  cv.imshow('canvasOutput', changed);
+  src.delete();
+  changed.delete();
+}

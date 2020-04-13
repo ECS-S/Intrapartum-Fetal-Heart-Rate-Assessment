@@ -45,13 +45,16 @@ input[type="file"] {
   width:850px !important;
 }
 .videoCapture {
-  display: none;
-}
-.slidecontainer {
-  width: 100%;
+  /* display: none; */
 }
 
+.slider-container {
+  margin-left: 16px;
+  margin-right: 16px;
+  margin-bottom: 32px;
+}
 .slider {
+  display: inline-block;
   -webkit-appearance: none;
   width: 100%;
   height: 25px;
@@ -61,11 +64,9 @@ input[type="file"] {
   -webkit-transition: .2s;
   transition: opacity .2s;
 }
-
 .slider:hover {
   opacity: 1;
 }
-
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
@@ -74,12 +75,20 @@ input[type="file"] {
   background: #2b699e;
   cursor: pointer;
 }
-
 .slider::-moz-range-thumb {
   width: 25px;
   height: 25px;
   background: #4CAF50;
   cursor: pointer;
+}
+
+/* video related */
+.placeholder {
+  width: 100%;
+  height: auto;
+}
+.invisible {
+  display: none;
 }
 video {
   width: 100%;

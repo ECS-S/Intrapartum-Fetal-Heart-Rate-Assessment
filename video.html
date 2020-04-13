@@ -47,21 +47,21 @@
 
               <!-- Enter week -->
               <p>懷孕週數:</p>
-              <div class="slider"></div>
-              <hr>
-              <hr>
+              <div class="slider-container">
+                <div class="slider"></div>
+              </div>
 
               <!-- submit btn -->
               <!-- video btn -->
               <button type="button" class="btn btn-primary " onclick="location.href='index.html';" >上傳照片</button>
               <button type="button" class="btn btn-primary" onclick="captureVideo();">線上辯識</button>
 
-                <!-- video capture -->
-                <h3 class="status">狀態</h3>
-                <video id="videoInput" width="480" height="360" controls> class="videoCapture"></video>
-                <canvas id="canvasOutput"></canvas>
+              <!-- video capture -->
+              <h3 class="status">狀態</h3>
+              <img id="placeholderVideo" class="placeholder" src="sample/video-placeholder.png" alt="Video Output">
+              <canvas id="canvasOutput" class="invisible"></canvas>
 
-              </div>
+            </div>
 
             </div>
 
