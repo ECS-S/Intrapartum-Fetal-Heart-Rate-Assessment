@@ -7,7 +7,7 @@ const label1 = document.getElementById('label-before');
 const label2 = document.getElementById('label-after');
 var isProcessed = false;
 
-document.getElementById("canvasOutput").style.display = "none";
+document.getElementById("videoInput").style.display = "none";
 function estimate(src, ignoreAlert) {
   try {
     startProcess(src, current_week - 1, [360, 480], { DEBUG: true });
